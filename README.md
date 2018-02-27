@@ -3,7 +3,9 @@
 
 About this fork
 =====
-...
+
+This fork replaces Apache's commons codec usage of Base64 with the Java 8 version. This makes
+the codec library optional as long as you only use Base64 for key representations.
 
 README
 ======
