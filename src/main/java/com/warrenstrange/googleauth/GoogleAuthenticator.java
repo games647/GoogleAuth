@@ -30,16 +30,22 @@
 
 package com.warrenstrange.googleauth;
 
-import org.apache.commons.codec.binary.Base32;
-import org.apache.commons.codec.binary.Base64;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Base64;
+import java.util.Date;
+import java.util.List;
+import java.util.Random;
+import java.util.ServiceLoader;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
-import java.util.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
+import org.apache.commons.codec.binary.Base32;
 
 /**
  * This class implements the functionality described in RFC 6238 (TOTP: Time
@@ -336,8 +342,7 @@ public final class GoogleAuthenticator implements IGoogleAuthenticator
                 // Commons Codec Base32::decode does not support lowercase letters.
                 return codec32.decode(secret.toUpperCase());
             case BASE64:
-                Base64 codec64 = new Base64();
-                return codec64.decode(secret);
+                return Base64.getDecoder().decode(secret);
             default:
                 throw new IllegalArgumentException("Unknown key representation type.");
         }
@@ -537,7 +542,7 @@ public final class GoogleAuthenticator implements IGoogleAuthenticator
             case BASE32:
                 return new Base32().encodeToString(secretKey);
             case BASE64:
-                return new Base64().encodeToString(secretKey);
+                return Base64.getEncoder().encodeToString(secretKey);
             default:
                 throw new IllegalArgumentException("Unknown key representation type.");
         }

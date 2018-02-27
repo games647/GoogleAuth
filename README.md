@@ -1,6 +1,10 @@
 [![Build Status](https://travis-ci.org/wstrange/GoogleAuth.svg?branch=develop)](https://travis-ci.org/wstrange/GoogleAuth)
 [![License](https://img.shields.io/badge/license-BSD-blue.svg?style=flat)](https://github.com/wstrange/GoogleAuth/blob/master/LICENSE)
 
+About this fork
+=====
+...
+
 README
 ======
 
@@ -34,15 +38,24 @@ Add a dependency to your build environment.
 
 If you are using Maven:
 
+```xml
+    <repository>
+        <id>jitpack.io</id>
+        <url>https://jitpack.io</url>
+    </repository>
+
     <dependency>
       <groupId>com.warrenstrange</groupId>
       <artifactId>googleauth</artifactId>
-      <version>1.1.2</version>
+      <version>1.2.0-SMALL</version>
     </dependency>
+```
 
 If you are using Gradle:
 
-     compile 'com.warrenstrange:googleauth:1.1.2'
+     maven { url 'https://jitpack.io' }
+
+     compile 'com.warrenstrange:googleauth:1.2.0-SMALL'
 
 The required libraries will be automatically pulled into your project:
 
